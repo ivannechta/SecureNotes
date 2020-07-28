@@ -22,8 +22,6 @@ public class MainActivity extends Activity  {
     ListView lst;
     public DataBase DB;
     public final int EditActivity=1;
-    //public final int DeleteActivity=2;
-
 
     public final int DeleteStateBegin=1;
     public final int DeleteStateStop=2;
@@ -34,9 +32,6 @@ public class MainActivity extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DB=new DataBase(this);
-        //DB.ClearDB();
-        //DB.AddRecord(-1,"First","11111");
-        //DB.AddRecord(-1,"Second","22222");
         DB.ReadDB();
         lst=findViewById(R.id.list);
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -49,7 +44,23 @@ public class MainActivity extends Activity  {
                 }
             }
         });
+        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                EditRecord(position);
+                DB.ReadDB();
+                UpdateListView();
+            }
+        });
+
         UpdateListView();
+    }
+    public void EditRecord(int id){
+        Intent i=new Intent(this,EditRecord.class);
+        i.putExtra("id",        DB.Records.get(id).id);
+        i.putExtra("caption",   DB.Records.get(id).Caption);
+        i.putExtra("message",   DB.Records.get(id).Message);
+        startActivityForResult(i,EditActivity);
     }
 
     public void UpdateListView() {

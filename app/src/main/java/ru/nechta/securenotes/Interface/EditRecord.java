@@ -13,18 +13,26 @@ import ru.nechta.securenotes.R;
 
 public class EditRecord extends AppCompatActivity {
     private int id;
+    private EditText EditCaption;
+    private EditText EditMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_record);
+        EditCaption=findViewById(R.id.EditCaption);
+        EditMessage=findViewById(R.id.EditMessage);
+
         Intent intent= getIntent();
         id=intent.getIntExtra("id",-1);
+        if (id!=-1) {
+            EditCaption.setText(intent.getStringExtra("caption"));
+            EditMessage.setText(intent.getStringExtra("message"));
+        }
     }
 
     public void SaveRecord(View v){
 
-        EditText EditCaption=findViewById(R.id.EditCaption);
-        EditText EditMessage=findViewById(R.id.EditMessage);
+
         String caption=EditCaption.getText().toString();
         String message=EditMessage.getText().toString();
 
