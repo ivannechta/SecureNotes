@@ -11,6 +11,7 @@ class DBHelper extends SQLiteOpenHelper {
         //Log.d("Ivan", "--- onCreate database ---"); //создадим новую таблицу в базе
         db.execSQL("create table mytable ("
                 + "id integer primary key autoincrement,"
+                + "ico integer,"
                 + "caption text,"
                 + "message text" + ");");
     }
@@ -18,6 +19,7 @@ class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS mytable"); //перезапишем старую таблицу
         db.execSQL("create table mytable ("
                 + "id integer primary key autoincrement,"
+                + "ico integer,"
                 + "caption text,"
                 + "message text" + ");");
     }

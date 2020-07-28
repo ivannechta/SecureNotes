@@ -34,6 +34,7 @@ public class MainActivity extends Activity  {
         DB=new DataBase(this);
         DB.ReadDB();
         lst=findViewById(R.id.list);
+
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -44,20 +45,23 @@ public class MainActivity extends Activity  {
                 }
             }
         });
-        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lst.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                EditRecord(position);
-                DB.ReadDB();
-                UpdateListView();
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (DeleteState==DeleteStateStop) {
+                    EditRecord(position);
+                    DB.ReadDB();
+                    UpdateListView();
+                }
+                return false;
             }
         });
-
         UpdateListView();
     }
     public void EditRecord(int id){
         Intent i=new Intent(this,EditRecord.class);
         i.putExtra("id",        DB.Records.get(id).id);
+        i.putExtra("ico",       DB.Records.get(id).Icon);
         i.putExtra("caption",   DB.Records.get(id).Caption);
         i.putExtra("message",   DB.Records.get(id).Message);
         startActivityForResult(i,EditActivity);
@@ -73,10 +77,11 @@ public class MainActivity extends Activity  {
         if (resultCode==RESULT_CANCELED){return;}
         if (requestCode==EditActivity){
             int id          =data.getIntExtra("id",-1);
+            int ico         =data.getIntExtra("ico",0);
             String caption  =data.getStringExtra("caption");
             String message  =data.getStringExtra("message");
 
-            DB.AddRecord(id,caption,message);
+            DB.AddRecord(id,ico,caption,message);
             DB.ReadDB();
             UpdateListView();
         }
