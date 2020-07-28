@@ -9,26 +9,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <Button
-        android:id="@+id/CreateButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="CreateButton"
-        android:text="Создать" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/DeleteButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="DeleteButton"
-        android:text="Удалить" />
+        <Button
+            android:id="@+id/CreateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="CreateButton"
+            android:text="Создать" />
+
+        <Button
+            android:id="@+id/DeleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="DeleteButton"
+            android:text="Удалить" />
 
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
