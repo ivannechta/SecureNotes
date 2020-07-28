@@ -36,6 +36,7 @@ public class MainActivity extends Activity  {
         lst=findViewById(R.id.list);
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+            
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (DeleteState==DeleteStateBegin){
                     DB.DeleteRecord(DB.Records.get(position).id);
