@@ -50,8 +50,8 @@ public class DataBase {
         }
     }
 
-    public void ClearDB(){
-        db.execSQL("DELETE from mytable;");
+    public void DeleteRecord(int i){
+        db.execSQL("DELETE from mytable where id='"+i+"';");
     }
 
 

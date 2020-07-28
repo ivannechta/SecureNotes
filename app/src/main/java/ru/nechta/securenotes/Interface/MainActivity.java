@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toolbar;
 
@@ -22,26 +24,37 @@ public class MainActivity extends Activity  {
     public final int EditActivity=1;
     //public final int DeleteActivity=2;
 
+
+    public final int DeleteStateBegin=1;
+    public final int DeleteStateStop=2;
+    public int DeleteState=DeleteStateStop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         DB=new DataBase(this);
         //DB.ClearDB();
         //DB.AddRecord(-1,"First","11111");
         //DB.AddRecord(-1,"Second","22222");
         DB.ReadDB();
         lst=findViewById(R.id.list);
+        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (DeleteState==DeleteStateBegin){
+                    DB.DeleteRecord(DB.Records.get(position).id);
+                    DB.ReadDB();
+                    UpdateListView();
+                }
+            }
+        });
         UpdateListView();
     }
 
     public void UpdateListView() {
         lst.setAdapter(new BoxAdapter(this, DB.Records));
     }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -64,5 +77,14 @@ public class MainActivity extends Activity  {
     }
 
     public void DeleteButton(View view) {
+        Button b=findViewById(R.id.DeleteButton);
+
+        if (DeleteState==DeleteStateStop){
+            DeleteState=DeleteStateBegin;
+            b.setText("Закончить удаление");
+        }else{
+            DeleteState=DeleteStateStop;
+            b.setText("Удаление");
+        }
     }
 }
