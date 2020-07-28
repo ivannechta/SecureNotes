@@ -1,4 +1,4 @@
-package ru.nechta.securenotes;
+package ru.nechta.securenotes.Interface;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import ru.nechta.securenotes.MessageRecord;
+import ru.nechta.securenotes.R;
 
 public class BoxAdapter extends BaseAdapter {
     private Context context;

@@ -4,13 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Interface.MainActivity">
 
-
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/list"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <Button
+        android:id="@+id/CreateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="CreateButton"
+        android:text="Создать" />
+
+    <Button
+        android:id="@+id/DeleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="DeleteButton"
+        android:text="Удалить" />
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
