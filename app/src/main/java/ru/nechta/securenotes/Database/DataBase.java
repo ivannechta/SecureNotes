@@ -1,9 +1,8 @@
-package ru.nechta.securenotes;
+package ru.nechta.securenotes.Database;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 

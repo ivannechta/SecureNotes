@@ -1,4 +1,4 @@
-package ru.nechta.securenotes;
+package ru.nechta.securenotes.Database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

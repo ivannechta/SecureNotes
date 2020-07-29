@@ -1,21 +1,24 @@
 package ru.nechta.securenotes.Interface;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toolbar;
 
-import javax.xml.transform.Result;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
-import ru.nechta.securenotes.DataBase;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+import ru.nechta.securenotes.Cypher;
+import ru.nechta.securenotes.Database.DataBase;
 import ru.nechta.securenotes.R;
 
 public class MainActivity extends Activity  {
@@ -31,6 +34,14 @@ public class MainActivity extends Activity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Cypher c=new Cypher();
+        String s="Hello";
+        String d;
+            d=c.encrypt(s,"qwerty");
+            Log.v("Ivandows","1->"+d);
+
+            Log.v("Ivandows","2->"+c.decrypt(d,"qwerty"));
+
         DB=new DataBase(this);
         DB.ReadDB();
         lst=findViewById(R.id.list);

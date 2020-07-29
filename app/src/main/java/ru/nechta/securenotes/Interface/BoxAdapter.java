@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ru.nechta.securenotes.MessageRecord;
+import ru.nechta.securenotes.Database.MessageRecord;
 import ru.nechta.securenotes.R;
 
 public class BoxAdapter extends BaseAdapter {
