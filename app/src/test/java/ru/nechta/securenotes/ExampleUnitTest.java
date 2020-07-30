@@ -15,7 +15,7 @@ public class ExampleUnitTest {
         Cypher AES=new Cypher();
         for (int i=0;i<10;i++) {
             AES.secret = "Hello"+i;
-            assertEquals("Encode", AES.decrypt(AES.encrypt("password")), ""+i);
+            assertEquals("Encode", AES.decrypt(AES.encrypt("password")), "password");
         }
     }
 }
