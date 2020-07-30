@@ -19,10 +19,12 @@ public class ExampleUnitTest {
         }
     }
     @Test
-    public void Cypher_correct1() {
-        Cypher AES=new Cypher();
+    public void Cypher_MD5_correct1() {
+//        Cypher AES=new Cypher();
 
-        assertEquals("Encode1", "", "password");
+        assertEquals("Encode1", Cypher.md5("Hel"), "6b6e667a40e816c4da7bb4ab64cbb82b");
+        assertEquals("Encode1", Cypher.md5("Hello"), "8b1a9953c4611296a827abf8c47804d7");
+        assertEquals("Encode1", Cypher.md5("Hello world"), "3e25960a79dbc69b674cd4ec67a72c62");
 
     }
 
