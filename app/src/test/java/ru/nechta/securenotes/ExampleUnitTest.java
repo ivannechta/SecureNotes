@@ -18,4 +18,12 @@ public class ExampleUnitTest {
             assertEquals("Encode", AES.decrypt(AES.encrypt("password")), "password");
         }
     }
+    @Test
+    public void Cypher_correct1() {
+        Cypher AES=new Cypher();
+
+        assertEquals("Encode1", "", "password");
+
+    }
+
 }
