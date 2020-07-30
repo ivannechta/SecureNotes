@@ -1,4 +1,4 @@
-package ru.nechta.securenotes;
+package ru.nechta.securenotes.Database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,7 +8,6 @@ class DBHelper extends SQLiteOpenHelper {
         super(context, "myDB", null, 1); //myDB – имя базы данных
     }
     public void onCreate(SQLiteDatabase db) {
-        //Log.d("Ivan", "--- onCreate database ---"); //создадим новую таблицу в базе
         db.execSQL("create table mytable ("
                 + "id integer primary key autoincrement,"
                 + "ico integer,"

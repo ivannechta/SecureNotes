@@ -15,12 +15,12 @@ import ru.nechta.securenotes.R;
 
 public class EditRecord extends AppCompatActivity {
     private int id;
-    //private int ico;
     private EditText EditCaption;
     private EditText EditMessage;
     private final int []Ico={R.drawable.bell,R.drawable.info,R.drawable.error};
     int CurrentIco=0;
     public ImageView img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,6 @@ public class EditRecord extends AppCompatActivity {
         EditMessage=findViewById(R.id.EditMessage);
 
         img=findViewById(R.id.imageView);
-
 
         Intent intent= getIntent();
         id=intent.getIntExtra("id",-1);

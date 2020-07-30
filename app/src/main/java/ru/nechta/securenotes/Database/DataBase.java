@@ -1,11 +1,12 @@
-package ru.nechta.securenotes;
+package ru.nechta.securenotes.Database;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
+
+import static ru.nechta.securenotes.Interface.MainActivity.AES;
 
 public class DataBase {
     private Context context;
@@ -20,10 +21,12 @@ public class DataBase {
         Records=new ArrayList<>();
         dbHelper=new DBHelper(context);
         db=dbHelper.getWritableDatabase();
+
     }
+
     public void ReadDB(){
         Cursor c;
-        c= db.rawQuery("Select * from mytable",null); //Выполняем запрос из базы
+        c= db.rawQuery("Select * from mytable",null);
         Records.clear();
 
         int ColIndexId,ColIndexIco,ColIndexCaption,ColIndexMessage;
@@ -37,22 +40,36 @@ public class DataBase {
                 Records.add(new MessageRecord(
                                     c.getInt(ColIndexId),
                                     c.getInt(ColIndexIco),
-                                    c.getString(ColIndexCaption),
-                                    c.getString(ColIndexMessage)));
+                                    AES.decrypt( c.getString(ColIndexCaption)),
+                                    AES.decrypt(c.getString(ColIndexMessage))));
             }while(c.moveToNext()); //переходим к следующему элементу
         }
     }
+
     public void AddRecord(int i,int ico,String Caption,String Message){
         if (i==-1){ //Is it new record?
-            db.execSQL("INSERT INTO mytable ( 'ico','caption','message') VALUES ('"+ico+"','"+Caption +"','"+Message+"');");
+            db.execSQL("INSERT INTO mytable ( 'ico','caption','message') VALUES ('"+ico+"','"+AES.encrypt( Caption) +"','"+AES.encrypt(Message)+"');");
         }else{
-            db.execSQL("UPDATE mytable SET  ico='"+ico+"',caption='"+Caption+"',message='"+Message+"' where id="+i+";");
+            db.execSQL("UPDATE mytable SET  ico='"+ico+"',caption='"+AES.encrypt( Caption)+"',message='"+AES.encrypt(Message)+"' where id="+i+";");
         }
     }
 
     public void DeleteRecord(int i){
         db.execSQL("DELETE from mytable where id='"+i+"';");
     }
+
+    public void Clear(){
+        db.execSQL("DELETE from mytable;");
+    }
+
+    public void SaveDB(){
+        for (MessageRecord m:Records) {
+            AddRecord(-1,m.Icon,m.Caption,m.Message);
+        }
+    }
+
+
+
 
 
 }

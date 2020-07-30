@@ -1,4 +1,4 @@
-package ru.nechta.securenotes;
+package ru.nechta.securenotes.Database;
 
 public class MessageRecord {
     public int id;
