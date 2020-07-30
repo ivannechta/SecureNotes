@@ -23,6 +23,7 @@ public class BoxAdapter extends BaseAdapter {
         context=cnt;
         Records=R;
     }
+
     @Override
     public int getCount() {
         return Records.size();
